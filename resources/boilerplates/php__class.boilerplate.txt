@@ -1,0 +1,52 @@
+{
+   "name": "PHP Class in 'app' Directory",
+   "out": "app/{{ $name.'App' }}.php",
+   "params": {
+       "extends": "optional",
+       "constructor": "flag",
+       "apps": "flag"
+   }
+}
+---
+<?php
+
+namespace {{ Format::getNamespace($path) }};
+
+class {{ Format::baseName($name)."App" }} @if($extends)extends {{ $extends }}@endif  {
+@if($apps)
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application's Pattern
+    |--------------------------------------------------------------------------
+    |
+    | The application's pattern is a layer which is the link between the model
+    | and the controller. Here is the place to define the method action needed.
+    | Recommended for always implement ONE METHOD ONE ACTION.
+    | Rules: must be using TRY CATCH.
+    |
+    */
+@endif
+
+@if($constructor)
+    /**
+     * The constructor of {{ Format::baseName($name)."App" }} class.
+     *
+     */
+    public function __construct()
+    {
+
+    }
+
+@endif
+@if($apps)
+    public function index()
+    {
+        try {
+            // your code ...
+        } catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage(), 400);
+        }
+    }
+@endif
+}
